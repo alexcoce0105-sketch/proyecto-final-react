@@ -9,7 +9,7 @@ const ProductList = () => {
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 8;
+    const itemsPerPage = 9;
 
 
     // Filtrado por buscador y categoria
