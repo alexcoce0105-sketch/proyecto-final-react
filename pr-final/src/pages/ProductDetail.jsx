@@ -1,31 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useAppStore from '../store/useAppStore';
-import axios from 'axios';
+import productsData from '../mockdata/products';
 import { formatPrice } from '../utils/formatPrice';
 import './ProductDetail.css';
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const product = productsData.find(p => p.id === Number(id));
     const { addToCart } = useAppStore();
-
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
-                setProduct(response.data);
-            } catch (error) {
-                console.error("Error fetching product details", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProduct();
-    }, [id]);
-
-    if (loading) return <div className="container loader"><h2>Cargando producto...</h2></div>;
     if (!product) return <div className="container loader"><h2>Producto no encontrado</h2></div>;
 
     return (

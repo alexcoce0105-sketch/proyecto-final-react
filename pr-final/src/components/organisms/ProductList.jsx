@@ -1,40 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import useAppStore from '../../store/useAppStore';
 import ProductCard from '../molecules/ProductCard';
-import axios from 'axios';
+import productsData from '../../mockdata/products';
 import '../../pages/Home.css';
 
 const ProductList = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
     const { searchQuery, selectedCategory, setSelectedCategory } = useAppStore();
 
     // Paginacion
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await axios.get('https://fakestoreapi.com/products');
-                setProducts(response.data);
-            } catch (error) {
-                console.error("Error fetching products", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    }, []);
 
     // Filtrado por buscador y categoria
-    const filteredProducts = products.filter(product => {
+    const filteredProducts = productsData.filter(product => {
         const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
         return matchesSearch && matchesCategory;
     });
 
-    const uniqueCategories = [...new Set(products.map(p => p.category))];
+    const uniqueCategories = [...new Set(productsData.map(p => p.category))];
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -45,8 +30,6 @@ const ProductList = () => {
     useEffect(() => {
         setCurrentPage(1);
     }, [searchQuery, selectedCategory]);
-
-    if (loading) return <div className="loader"><h2>Cargando productos...</h2></div>;
 
     return (
         <div>

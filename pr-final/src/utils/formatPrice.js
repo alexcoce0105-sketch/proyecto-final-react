@@ -1,3 +1,3 @@
-export const formatPrice = (priceInUSD) => {
-    return (priceInUSD * 4000).toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+export const formatPrice = (price) => {
+    return price.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
 };
