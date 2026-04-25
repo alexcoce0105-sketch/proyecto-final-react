@@ -26,7 +26,7 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="nav-brand">
-                <Link to="/" onClick={() => setSearchQuery('')}>🛍️ Camelia</Link>
+                <Link to="/" onClick={() => setSearchQuery('')}>🌸 Camelia 🌸</Link>
             </div>
 
             <div className="nav-search">
