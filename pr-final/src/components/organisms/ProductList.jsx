@@ -33,11 +33,11 @@ const ProductList = () => {
 
     return (
         <div>
-            <div className="filters-bar" style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', justifyContent: 'center' }}>
+            <div className="filters-bar">
                 <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    style={{ padding: '0.8rem', borderRadius: '5px', border: '1px solid #ccc', minWidth: '200px' }}
+                    className="category-select"
                 >
                     <option value="">Todas las Categorías</option>
                     {uniqueCategories.map(cat => (

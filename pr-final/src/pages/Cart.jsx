@@ -53,12 +53,24 @@ const Cart = () => {
 
             <div className="cart-summary">
                 <h3>Total: {formatPrice(total)}</h3>
-                <button
-                    className="btn-primary"
-                    onClick={() => navigate('/checkout')}
-                >
-                    Proceder al Pago
-                </button>
+                <div className="cart-summary-actions" style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end', marginTop: '1rem' }}>
+                    <button
+                        className="btn-secondary"
+                        onClick={() => {
+                            if (window.confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
+                                clearCart();
+                            }
+                        }}
+                    >
+                        Vaciar Carrito
+                    </button>
+                    <button
+                        className="btn-primary"
+                        onClick={() => navigate('/checkout')}
+                    >
+                        Proceder al Pago
+                    </button>
+                </div>
             </div>
         </div>
     );

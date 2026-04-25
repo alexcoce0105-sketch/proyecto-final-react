@@ -11,7 +11,16 @@ const useAppStore = create((set) => ({
         set({ user });
     },
 
-    cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
+    cart: (() => {
+        const savedCart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        // Limpiar productos viejos que traigan URLs externas (ej: fakestoreapi)
+        const isStale = savedCart.some(item => typeof item.image === 'string' && item.image.startsWith('http'));
+        if (isStale) {
+            localStorage.setItem('cart', JSON.stringify([]));
+            return [];
+        }
+        return savedCart;
+    })(),
     addToCart: (product) => set((state) => {
         const existing = state.cart.find(item => item.id === product.id);
         let newCart;

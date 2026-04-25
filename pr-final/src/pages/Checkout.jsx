@@ -69,9 +69,9 @@ const Checkout = () => {
                         <label>Tarjeta de Crédito</label>
                         <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" required />
                     </div>
-                    <div className="checkout-actions" style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+                    <div className="checkout-actions">
                         <button type="submit" className="btn-primary btn-pay">Confirmar y Pagar</button>
-                        <button type="button" className="btn-secondary" onClick={() => navigate('/cart')} style={{ padding: '0.8rem', background: '#ccc', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>Cancelar y Regresar</button>
+                        <button type="button" className="btn-secondary" onClick={() => navigate('/cart')}>Cancelar y Regresar</button>
                     </div>
                 </form>
             </div>

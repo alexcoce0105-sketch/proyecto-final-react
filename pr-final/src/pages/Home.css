@@ -49,3 +49,26 @@
     background-color: #bdc3c7;
     cursor: not-allowed;
 }
+
+.filters-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.category-select {
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    min-width: 200px;
+    background-color: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.category-select:focus {
+    border-color: var(--accent);
+    outline: none;
+}
